@@ -115,10 +115,6 @@ class SecurePDFViewer(ctk.CTk):
         self.bind('<Control-p>', lambda e: "break")
         self.bind('<Control-P>', lambda e: "break")
         
-        # Disable print screen
-        self.bind('<Print>', lambda e: "break")
-        self.bind('<Snapshot>', lambda e: "break")
-        
         # Navigation keys
         self.bind('<Left>', lambda e: self.prev_page())
         self.bind('<Right>', lambda e: self.next_page())
