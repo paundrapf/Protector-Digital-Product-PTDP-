@@ -28,11 +28,11 @@ jobs:
     
     - name: Build Viewer
       run: |
-        pyinstaller --onefile --noconsole --name=PTDP-Viewer-Windows viewer.py
+        pyinstaller --onefile --noconsole --name=PTDP-Viewer-Windows --hidden-import=customtkinter --hidden-import=PIL._tkinter_finder --hidden-import=cryptography.hazmat.primitives.ciphers --hidden-import=cryptography.hazmat.primitives.kdf.pbkdf2 --hidden-import=cryptography.hazmat.backends --add-data="gui;gui" --add-data="core;core" viewer.py
     
     - name: Build Creator
       run: |
-        pyinstaller --onefile --noconsole --name=PTDP-Creator-Windows creator.py
+        pyinstaller --onefile --noconsole --name=PTDP-Creator-Windows --hidden-import=customtkinter --hidden-import=PIL._tkinter_finder --hidden-import=cryptography.hazmat.primitives.ciphers --hidden-import=cryptography.hazmat.primitives.kdf.pbkdf2 --hidden-import=cryptography.hazmat.backends --add-data="gui;gui" --add-data="core;core" creator.py
     
     - name: List output
       run: dir dist
