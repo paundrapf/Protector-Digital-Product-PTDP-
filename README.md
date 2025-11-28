@@ -1,317 +1,258 @@
-# 🔒 PTDP Protection System
-## Protected Digital Product Format
+<p align="center">
+  <img src="assets/icons/installer_icon.svg" width="120" alt="PTDP Logo">
+</p>
 
-**Sistem proteksi file digital dengan enkripsi AES-256, license validation, dan hardware lock**
+<h1 align="center">🔒 PTDP Protection System</h1>
+
+<p align="center">
+  <strong>Protect Your Digital Products with Military-Grade Encryption</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/USERNAME/PTDP-Protection/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/USERNAME/PTDP-Protection/build.yml?style=for-the-badge&logo=github&label=BUILD" alt="Build Status">
+  </a>
+  <a href="https://github.com/USERNAME/PTDP-Protection/releases/latest">
+    <img src="https://img.shields.io/github/v/release/USERNAME/PTDP-Protection?style=for-the-badge&logo=github&color=FF4D6D&label=VERSION" alt="Latest Release">
+  </a>
+  <a href="https://github.com/USERNAME/PTDP-Protection/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge" alt="License">
+  </a>
+  <a href="https://github.com/USERNAME/PTDP-Protection/releases">
+    <img src="https://img.shields.io/github/downloads/USERNAME/PTDP-Protection/total?style=for-the-badge&logo=windows&label=DOWNLOADS&color=10B981" alt="Downloads">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-download">Download</a> •
+  <a href="#-documentation">Docs</a> •
+  <a href="#-faq">FAQ</a>
+</p>
 
 ---
 
-## 📦 Tentang PTDP
+## 🎯 What is PTDP?
 
-**PTDP (Protected Digital Product)** adalah format file custom `.ptdp` yang dirancang untuk melindungi produk digital seperti ebook, course, template, dan konten premium lainnya dengan enkripsi tingkat enterprise.
+**PTDP (Protected Digital Product)** is a custom file format (`.ptdp`) designed to protect digital products like ebooks, courses, templates, and premium content with enterprise-level security.
 
-### ✨ Fitur Utama
+<table>
+<tr>
+<td width="50%">
 
-- 🔐 **Enkripsi AES-256** - Military-grade encryption
-- 🔑 **License Management** - Offline/online validation
-- 💻 **Hardware Locking** - Bind license ke device tertentu  
-- ⏰ **Expiry Date** - Set tanggal kadaluarsa
-- 👁️ **View Limit** - Batasi jumlah views
-- 📊 **Usage Tracking** - Monitor penggunaan
-- 🌐 **Multi-Platform** - Windows, macOS, Linux support
-- 🎨 **Modern UI** - Beautiful dark theme GUI
+### 🛡️ For Sellers
+Protect your digital products from piracy. Create encrypted files that can only be opened with valid license keys.
+
+</td>
+<td width="50%">
+
+### 📖 For Buyers  
+Securely read protected content. One-click download, enter your license key, and enjoy!
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 📁 Struktur Project
+## ✨ Features
 
-```
-PTDP-Protection/
-├── core/                    # Core modules
-│   ├── __init__.py
-│   ├── creator.py          # File protection/encryption
-│   ├── reader.py           # File decryption/reading
-│   ├── license.py          # License management
-│   └── hwid.py             # Hardware ID detection
-├── gui/                     # GUI applications
-│   ├── __init__.py
-│   ├── viewer.py           # End-user viewer app
-│   └── creator.py          # Admin creator tool
-├── server/                  # License server
-│   ├── __init__.py
-│   └── api.py              # Flask REST API
-├── tests/                   # Unit tests
-│   └── test_all.py
-├── docs/                    # Documentation
-│   ├── README.md
-│   ├── QUICKSTART.md
-│   ├── USER_GUIDE.md
-│   ├── DEVELOPER_GUIDE.md
-│   ├── GET_STARTED.txt
-│   └── PROJECT_STRUCTURE.txt
-├── assets/                  # Icons & resources
-│   └── icon.ico
-├── config.py               # Configuration
-├── requirements.txt        # Dependencies
-├── build.py               # Build executables
-├── example_usage.py       # Usage examples
-└── register_ptdp.bat      # Windows file association
-```
+| Feature | Description |
+|---------|-------------|
+| 🔐 **AES-256 Encryption** | Military-grade encryption for your content |
+| 🔑 **License System** | Unique keys for each customer |
+| 💻 **Hardware Lock** | Bind license to specific devices |
+| ⏰ **Expiry Date** | Set content expiration |
+| 👁️ **View Limit** | Control how many times content can be viewed |
+| 🔄 **Auto-Update** | Apps automatically check for updates |
+| 📖 **In-App PDF Reader** | Secure PDF viewing with anti-screenshot |
+| 🎨 **Modern UI** | Beautiful dark theme interface |
+
+---
+
+## 📥 Download
+
+<table>
+<tr>
+<td align="center" width="50%">
+<h3>📖 PTDP Viewer</h3>
+<p><em>For Buyers - Read protected content</em></p>
+<a href="https://github.com/USERNAME/PTDP-Protection/releases/latest/download/PTDP-Viewer-Windows.exe">
+<img src="https://img.shields.io/badge/DOWNLOAD-VIEWER-3B82F6?style=for-the-badge&logo=windows" alt="Download Viewer">
+</a>
+</td>
+<td align="center" width="50%">
+<h3>🔐 PTDP Creator</h3>
+<p><em>For Sellers - Protect your products</em></p>
+<a href="https://github.com/USERNAME/PTDP-Protection/releases/latest/download/PTDP-Creator-Windows.exe">
+<img src="https://img.shields.io/badge/DOWNLOAD-CREATOR-FF4D6D?style=for-the-badge&logo=windows" alt="Download Creator">
+</a>
+</td>
+</tr>
+</table>
+
+> ⚠️ **First Run:** Windows may show SmartScreen warning. Click **"More info"** → **"Run anyway"**
 
 ---
 
 ## 🚀 Quick Start
 
-### Installation
+### For Buyers (Reading Protected Files)
+
+```
+1. Download PTDP-Viewer-Windows.exe
+2. Double-click to run (no installation needed!)
+3. Open .ptdp file
+4. Enter your license key
+5. Enjoy your content! 📖
+```
+
+### For Sellers (Creating Protected Files)
+
+```
+1. Download PTDP-Creator-Windows.exe
+2. Double-click to run
+3. Select PDF file to protect
+4. Configure protection settings
+5. Generate license keys for customers
+6. Distribute .ptdp file + license keys
+```
+
+---
+
+## 🔧 How It Works
+
+```mermaid
+graph LR
+    A[📄 Original PDF] --> B[🔐 PTDP Creator]
+    B --> C[📦 Encrypted .ptdp]
+    B --> D[🔑 License Keys]
+    C --> E[📖 PTDP Viewer]
+    D --> E
+    E --> F[✅ View Content]
+```
+
+<details>
+<summary>📋 <strong>Technical Details</strong></summary>
+
+### Encryption Process
+1. PDF content is encrypted using AES-256
+2. Encryption key derived from `product_id + secret_key` via PBKDF2
+3. Metadata (product info, restrictions) stored in file header
+4. License validation checks hardware ID, expiry, view count
+
+### Security Features
+- **Anti-Screenshot**: Windows Display Affinity protection
+- **Anti-Copy**: Keyboard shortcuts disabled in viewer
+- **Hardware Binding**: License tied to specific machine
+- **Expiry Control**: Time-based license expiration
+
+</details>
+
+---
+
+## 📁 Project Structure
+
+```
+PTDP-Protection/
+├── 📁 core/                 # Core modules
+│   ├── creator.py          # File encryption
+│   ├── reader.py           # File decryption
+│   ├── license.py          # License validation
+│   ├── hwid.py             # Hardware ID detection
+│   └── updater.py          # Auto-update system
+├── 📁 gui/                  # GUI applications
+│   ├── viewer_modern.py    # Secure PDF viewer
+│   └── creator_modern.py   # Creator interface
+├── 📁 assets/               # Icons & resources
+│   └── icons/              # App icons
+├── 📁 website/              # Landing page
+├── config.py               # Configuration
+├── requirements.txt        # Dependencies
+├── viewer.py               # Viewer entry point
+└── creator.py              # Creator entry point
+```
+
+---
+
+## 📖 Documentation
+
+| Document | Description |
+|----------|-------------|
+| [📘 Quick Start](QUICKSTART.md) | Get started in 5 minutes |
+| [📗 User Guide](USER_GUIDE.md) | Complete usage instructions |
+| [📕 Developer Guide](DEVELOPER_GUIDE.md) | API & integration docs |
+
+---
+
+## ❓ FAQ
+
+<details>
+<summary><strong>Why does Windows show a warning?</strong></summary>
+
+Windows SmartScreen shows warnings for unsigned applications. To remove this warning, the app needs a code signing certificate ($200-400/year). The app is completely safe - you can verify by checking the source code.
+
+**Workaround:** Click "More info" → "Run anyway"
+</details>
+
+<details>
+<summary><strong>Can I use one license on multiple devices?</strong></summary>
+
+By default, licenses are bound to one device. Sellers can configure multi-device licenses using the `ANYDEVIC` option in Creator.
+</details>
+
+<details>
+<summary><strong>What happens when license expires?</strong></summary>
+
+The viewer will show an "Expired License" message. Users need to contact the seller for renewal.
+</details>
+
+<details>
+<summary><strong>Is my content safe from piracy?</strong></summary>
+
+PTDP uses AES-256 encryption (same as banks and military). While no protection is 100% unbreakable, PTDP makes piracy significantly more difficult than distributing plain PDFs.
+</details>
+
+---
+
+## 🛠️ Development
 
 ```bash
-# Clone/download project
-git clone https://github.com/yourusername/PTDP-Protection.git
+# Clone repository
+git clone https://github.com/USERNAME/PTDP-Protection.git
 cd PTDP-Protection
 
 # Install dependencies
 pip install -r requirements.txt
-```
 
-### 1. Protect File (Seller/Creator)
+# Run tests
+python -m pytest tests/
 
-```python
-from core.creator import PTDPCreator
+# Run viewer
+python viewer.py
 
-creator = PTDPCreator()
-result = creator.create_protected_file(
-    input_file="myebook.pdf",
-    output_file="myebook.ptdp",
-    protection_config={
-        'product_id': 'EBOOK001',
-        'product_name': 'Trading Guide 2024',
-        'master_password': 'SecretKey123',
-        'require_online': False,
-        'max_devices': 1,
-        'expiry_date': None,  # Lifetime
-        'view_limit': None    # Unlimited
-    }
-)
-# Result: myebook.ptdp (encrypted file)
-```
-
-### 2. Generate License Key
-
-```python
-from core.license import LicenseValidator
-
-# Get buyer's device ID (they send this to you)
-buyer_device_id = "A1B2C3D4E5F6..."
-
-# Generate license
-license_key = LicenseValidator.generate_license(
-    product_id='EBOOK001',
-    hwid=buyer_device_id,
-    expiry_date='LIFETIME'  # or '20251231'
-)
-# Result: EBOOK001-A1B2C3D4-LIFETIME-F7E8D9C0
-```
-
-### 3. Open Protected File (Buyer/User)
-
-```python
-from core.reader import PTDPReader
-
-reader = PTDPReader()
-result = reader.decrypt_file(
-    ptdp_file="myebook.ptdp",
-    license_key="EBOOK001-A1B2C3D4-LIFETIME-F7E8D9C0",
-    output_file="myebook_decrypted.pdf"
-)
-# File automatically opens after decryption
+# Run creator
+python creator.py
 ```
 
 ---
 
-## 🛠️ Build Executables
+## 📜 License
 
-### Build GUI Applications
-
-```bash
-# Build viewer (for end-users)
-python build.py viewer
-
-# Build creator (for sellers)
-python build.py creator
-
-# Build both
-python build.py all
-```
-
-**Output:**
-- `dist/PTDP-Viewer.exe` - Untuk end-users
-- `dist/PTDP-Creator.exe` - Untuk admin/seller
-
-### Create Windows Installer
-
-```bash
-# Using Inno Setup (optional)
-iscc installer.iss
-
-# Output: installer/PTDP-Viewer-Setup.exe
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📖 Usage Workflow
+<p align="center">
+  <strong>Made with ❤️ for Content Creators</strong>
+</p>
 
-### For Sellers/Content Creators:
-
-1. **Protect your digital product**
-   ```bash
-   python -m gui.creator
-   # Or use PTDP-Creator.exe
-   ```
-
-2. **Generate license for buyer**
-   - Get buyer's Device ID
-   - Generate license key
-   - Send license key to buyer
-
-3. **Distribute files**
-   - Upload `.ptdp` file (Google Drive, website, etc.)
-   - Send PTDP-Viewer.exe to buyer (once)
-   - Send unique license key per buyer
-
-### For Buyers/End-Users:
-
-1. **Download PTDP Viewer** (one-time setup)
-2. **Download `.ptdp` file** from seller
-3. **Open file** in PTDP Viewer
-4. **Enter license key** when prompted
-5. **View content** - file opens automatically!
-
----
-
-## 🔑 License Key Format
-
-```
-PRODUCT-HWID-EXPIRY-SIGNATURE
-EBOOK001-A1B2C3D4-LIFETIME-F7E8D9C0
-
-Components:
-- PRODUCT: Product ID (8 chars)
-- HWID: Hardware ID (8 chars) - device lock
-- EXPIRY: LIFETIME or YYYYMMDD
-- SIGNATURE: Cryptographic hash (8 chars)
-```
-
----
-
-## 🌐 License Server (Optional)
-
-### Start Server
-
-```bash
-python -m server.api
-
-# Server runs on http://localhost:5000
-```
-
-### API Endpoints
-
-- `POST /api/validate` - Validate license
-- `POST /api/generate` - Generate license (admin)
-- `GET /` - Server status
-
----
-
-## 📚 Documentation
-
-- **[Quick Start Guide](docs/QUICKSTART.md)** - 5 menit setup
-- **[User Guide](docs/USER_GUIDE.md)** - Untuk end-users
-- **[Developer Guide](docs/DEVELOPER_GUIDE.md)** - Untuk developers/sellers
-- **[Get Started](docs/GET_STARTED.txt)** - Text format guide
-- **[Project Structure](docs/PROJECT_STRUCTURE.txt)** - File organization
-
----
-
-## 🔒 Security Features
-
-✅ **AES-256 Encryption** - Industry standard  
-✅ **PBKDF2 Key Derivation** - 200,000 iterations  
-✅ **SHA-256 Hashing** - Integrity verification  
-✅ **Hardware ID Locking** - Device binding  
-✅ **Cryptographic Signatures** - Anti-tampering  
-✅ **Offline Validation** - No internet required  
-✅ **Online Validation** - Server-based (optional)  
-
----
-
-## 🎯 Use Cases
-
-- 📖 **Ebooks & Courses** - Protect digital books and training materials
-- 🎨 **Templates & Assets** - Protect design files and graphics
-- 💼 **Business Documents** - Secure confidential files
-- 🎵 **Audio/Video** - Protect media content
-- 📊 **Data Files** - Protect spreadsheets and databases
-- 🎮 **Game Assets** - Protect game files and mods
-
----
-
-## ⚙️ Requirements
-
-```
-Python 3.8+
-cryptography >= 41.0.0
-requests >= 2.31.0
-psutil >= 5.9.0
-flask >= 3.0.0 (for server)
-PyInstaller >= 6.0.0 (for building)
-```
-
----
-
-## 🤝 Contributing
-
-Contributions welcome! Please read CONTRIBUTING.md first.
-
-1. Fork the project
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
----
-
-## 🆘 Support
-
-- 📧 Email: support@example.com
-- 💬 Discord: [Join Server](#)
-- 📖 Documentation: [docs/](docs/)
-- 🐛 Issues: [GitHub Issues](#)
-
----
-
-## 🔮 Roadmap
-
-- [ ] macOS & Linux GUI builds
-- [ ] Web-based viewer (browser)
-- [ ] Cloud storage integration
-- [ ] Payment gateway integration
-- [ ] Mobile app support
-- [ ] Advanced watermarking
-- [ ] Screenshot protection
-- [ ] Multi-language support
-
----
-
-## ⭐ Star History
-
-If you find this project useful, please consider giving it a star! ⭐
-
----
-
-**Made with ❤️ by PTDP Team**
-
-© 2024 PTDP Protection System - All Rights Reserved
+<p align="center">
+  <a href="https://github.com/USERNAME/PTDP-Protection">
+    <img src="https://img.shields.io/github/stars/USERNAME/PTDP-Protection?style=social" alt="Stars">
+  </a>
+  <a href="https://github.com/USERNAME/PTDP-Protection/fork">
+    <img src="https://img.shields.io/github/forks/USERNAME/PTDP-Protection?style=social" alt="Forks">
+  </a>
+</p>

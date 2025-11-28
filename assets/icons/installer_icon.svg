@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- PTDP Installer Icon - Shield with Download Arrow -->
+  
+  <!-- Background Shield -->
+  <path fill="#10B981" d="M128 16L32 48v64c0 60 41 116 96 128 55-12 96-68 96-128V48L128 16z"/>
+  
+  <!-- Inner Shadow Effect -->
+  <path fill="#059669" d="M128 16L32 48v64c0 60 41 116 96 128V16z" opacity="0.3"/>
+  
+  <!-- Download Box -->
+  <path fill="#FFFFFF" d="M88 160h80v24H88z"/>
+  
+  <!-- Download Arrow -->
+  <polygon fill="#FFFFFF" points="128,72 104,112 116,112 116,144 140,144 140,112 152,112"/>
+  
+  <!-- Arrow Shadow -->
+  <polygon fill="#10B981" points="128,144 116,144 116,112 104,112 128,72" opacity="0.2"/>
+</svg>

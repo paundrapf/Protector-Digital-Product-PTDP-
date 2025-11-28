@@ -14,7 +14,7 @@ import threading
 from pathlib import Path
 
 # Version info
-CURRENT_VERSION = "1.0.2"
+CURRENT_VERSION = "1.0.3"
 GITHUB_REPO = "paundrapf/Protector-Digital-Product-PTDP-"
 GITHUB_API = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
 

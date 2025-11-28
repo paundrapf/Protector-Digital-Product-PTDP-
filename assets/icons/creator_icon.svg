@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- PTDP Creator Icon - Shield with Plus (for creating protected files) -->
+  
+  <!-- Background Shield -->
+  <path fill="#FF4D6D" d="M128 16L32 48v64c0 60 41 116 96 128 55-12 96-68 96-128V48L128 16z"/>
+  
+  <!-- Inner Shadow Effect -->
+  <path fill="#E8435F" d="M128 16L32 48v64c0 60 41 116 96 128V16z" opacity="0.3"/>
+  
+  <!-- Lock Body -->
+  <rect x="88" y="120" width="80" height="64" rx="8" fill="#FFFFFF"/>
+  
+  <!-- Lock Shackle -->
+  <path fill="#FFFFFF" d="M104 120v-24c0-13.3 10.7-24 24-24s24 10.7 24 24v24h16v-24c0-22.1-17.9-40-40-40s-40 17.9-40 40v24h16z"/>
+  
+  <!-- Plus Symbol (Creator) -->
+  <rect x="120" y="136" width="16" height="32" fill="#FF4D6D"/>
+  <rect x="104" y="144" width="48" height="16" fill="#FF4D6D"/>
+</svg>

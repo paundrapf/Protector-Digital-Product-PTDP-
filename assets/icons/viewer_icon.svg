@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- PTDP Viewer Icon - Shield with Eye (for viewing protected files) -->
+  
+  <!-- Background Shield -->
+  <path fill="#3B82F6" d="M128 16L32 48v64c0 60 41 116 96 128 55-12 96-68 96-128V48L128 16z"/>
+  
+  <!-- Inner Shadow Effect -->
+  <path fill="#2563EB" d="M128 16L32 48v64c0 60 41 116 96 128V16z" opacity="0.3"/>
+  
+  <!-- Eye Shape -->
+  <path fill="#FFFFFF" d="M128 96c-35.3 0-64 28.7-64 36s28.7 36 64 36 64-28.7 64-36-28.7-36-64-36z"/>
+  
+  <!-- Eye Outer Circle -->
+  <circle cx="128" cy="132" r="28" fill="#3B82F6"/>
+  
+  <!-- Eye Inner Circle (Pupil) -->
+  <circle cx="128" cy="132" r="14" fill="#1E3A5F"/>
+  
+  <!-- Eye Highlight -->
+  <circle cx="122" cy="126" r="6" fill="#FFFFFF"/>
+</svg>

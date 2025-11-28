@@ -44,6 +44,7 @@ jobs:
     - name: Build Viewer
       run: |
         pyinstaller --onefile --noconsole --name=PTDP-Viewer-Windows `
+          --icon=assets/icons/viewer_icon.ico `
           --collect-all=cryptography `
           --collect-all=requests `
           --collect-all=urllib3 `
@@ -88,6 +89,7 @@ jobs:
     - name: Build Creator
       run: |
         pyinstaller --onefile --noconsole --name=PTDP-Creator-Windows `
+          --icon=assets/icons/creator_icon.ico `
           --collect-all=cryptography `
           --collect-all=requests `
           --collect-all=urllib3 `
@@ -154,23 +156,31 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         tag_name: latest
-        name: Download PTDP Apps
+        name: PTDP v1.0.3 - Download Now!
         body: |
-          ## Download and Use Immediately!
+          ## 🚀 Download and Use Immediately!
           
-          No installation needed! Just download, double-click, and use.
+          **No installation needed!** Just download, double-click, and use.
           
-          ### For End Users (Read PDFs)
-          Download PTDP-Viewer-Windows.exe to read protected PDFs
+          ### 📖 For End Users (Read Protected PDFs)
+          ➡️ Download **PTDP-Viewer-Windows.exe**
           
-          ### For Sellers (Protect PDFs)
-          Download PTDP-Creator-Windows.exe to protect your PDFs
+          ### 🔐 For Sellers (Protect Your PDFs)
+          ➡️ Download **PTDP-Creator-Windows.exe**
           
           ---
           
-          First time running? Windows may show a warning. Click More info then Run anyway.
+          ### 🆕 What's New in v1.0.3
+          - 🎨 New app icons (shield design)
+          - 📄 Improved in-app PDF reading
+          - 🔧 Bug fixes and performance improvements
           
-          System Requirements: Windows 10/11 (64-bit)
+          ---
+          
+          > ⚠️ **First time running?** Windows may show SmartScreen warning.
+          > Click **"More info"** → **"Run anyway"**
+          
+          📋 System Requirements: Windows 10/11 (64-bit)
         files: |
           dist/PTDP-Viewer-Windows.exe
           dist/PTDP-Creator-Windows.exe
