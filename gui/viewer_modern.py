@@ -360,7 +360,7 @@ class ModernPTDPViewer(ctk.CTk):
             
         try:
             self.reader = PTDPReader()
-            metadata = self.reader.get_metadata(file_path)
+            metadata = self.reader.read_metadata(file_path)
             
             self.current_file = file_path
             
@@ -413,7 +413,7 @@ class ModernPTDPViewer(ctk.CTk):
             return
             
         try:
-            metadata = self.reader.get_metadata(self.current_file)
+            metadata = self.reader.read_metadata(self.current_file)
             product_id = metadata.get("product_id", "")
             
             validator = LicenseValidator(product_id)
