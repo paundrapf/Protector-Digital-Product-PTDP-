@@ -87,9 +87,11 @@ class LicenseValidator:
             
             # Validate HWID (device lock)
             if config.ENABLE_HWID_LOCK:
-                hwid_short = self.hwid[:8].upper()
-                if stored_hwid != hwid_short:
-                    return False, f"License locked to different device (HWID: {stored_hwid})"
+                # ANYDEVIC means license works on any device
+                if stored_hwid != "ANYDEVIC":
+                    hwid_short = self.hwid[:8].upper()
+                    if stored_hwid != hwid_short:
+                        return False, f"License locked to different device (HWID: {stored_hwid})"
             
             # Validate expiry
             if expiry_date != "LIFETIME":
