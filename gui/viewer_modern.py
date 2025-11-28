@@ -416,8 +416,8 @@ class ModernPTDPViewer(ctk.CTk):
             metadata = self.reader.read_metadata(self.current_file)
             product_id = metadata.get("product_id", "")
             
-            validator = LicenseValidator(product_id)
-            is_valid, message = validator.validate(license_key)
+            validator = LicenseValidator()
+            is_valid, message = validator.validate_offline(license_key, product_id)
             
             if is_valid:
                 self.license_status.configure(
