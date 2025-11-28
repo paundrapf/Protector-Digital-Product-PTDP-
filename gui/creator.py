@@ -8,22 +8,28 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 import sys
 import os
+import threading
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core.creator import PTDPCreator
 from core.license import LicenseValidator
+from core.updater import AutoUpdater, CURRENT_VERSION
 
 class PTDPCreatorGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("PTDP Creator - Protect Your Digital Products")
+        self.root.title(f"PTDP Creator v{CURRENT_VERSION} - Protect Your Digital Products")
         self.root.geometry("700x800")
         self.root.configure(bg='#2b2b2b')
         
         self.creator = PTDPCreator()
+        self.updater = AutoUpdater("Creator", CURRENT_VERSION)
         
         self.setup_ui()
+        
+        # Check for updates after 2 seconds
+        self.root.after(2000, self.check_updates_background)
     
     def setup_ui(self):
         # Header
@@ -433,6 +439,98 @@ Do you want to generate a license key now?"""
             padx=30,
             pady=10
         ).pack(pady=10)
+    
+    def check_updates_background(self):
+        """Check for updates in background"""
+        self.updater.check_for_updates_async(self.on_update_check_complete)
+    
+    def on_update_check_complete(self, available, version, notes):
+        """Called when update check is complete"""
+        if available:
+            self.root.after(0, lambda: self.show_update_dialog(version, notes))
+    
+    def show_update_dialog(self, version, notes):
+        """Show update available dialog"""
+        result = messagebox.askyesno(
+            "Update Available",
+            f"A new version (v{version}) is available!\n\n"
+            f"Current: v{CURRENT_VERSION}\n"
+            f"New: v{version}\n\n"
+            f"Do you want to update now?"
+        )
+        
+        if result:
+            self.download_and_apply_update()
+    
+    def download_and_apply_update(self):
+        """Download and apply the update"""
+        # Create progress window
+        progress_window = tk.Toplevel(self.root)
+        progress_window.title("Updating...")
+        progress_window.geometry("400x150")
+        progress_window.configure(bg='#2b2b2b')
+        progress_window.transient(self.root)
+        progress_window.grab_set()
+        
+        # Center window
+        progress_window.update_idletasks()
+        x = self.root.winfo_x() + (self.root.winfo_width() - 400) // 2
+        y = self.root.winfo_y() + (self.root.winfo_height() - 150) // 2
+        progress_window.geometry(f"+{x}+{y}")
+        
+        label = tk.Label(
+            progress_window,
+            text="Downloading update...",
+            font=("Arial", 14, "bold"),
+            bg='#2b2b2b',
+            fg='#00ff88'
+        )
+        label.pack(pady=20)
+        
+        progress = ttk.Progressbar(progress_window, length=300, mode='determinate')
+        progress.pack(pady=10)
+        
+        status_label = tk.Label(
+            progress_window,
+            text="0%",
+            bg='#2b2b2b',
+            fg='#ffffff'
+        )
+        status_label.pack()
+        
+        def update_progress(downloaded, total):
+            if total > 0:
+                percent = int((downloaded / total) * 100)
+                self.root.after(0, lambda: progress.configure(value=percent))
+                self.root.after(0, lambda: status_label.configure(
+                    text=f"{percent}% ({downloaded // 1024 // 1024}MB / {total // 1024 // 1024}MB)"
+                ))
+        
+        def do_download():
+            update_path = self.updater.download_update(update_progress)
+            if update_path:
+                self.root.after(0, lambda: label.configure(text="Installing update..."))
+                self.root.after(0, lambda: status_label.configure(text="Please wait..."))
+                
+                if self.updater.apply_update(update_path):
+                    self.root.after(500, self.root.destroy)  # Close app for update
+                else:
+                    self.root.after(0, lambda: messagebox.showerror(
+                        "Update Failed",
+                        "Could not apply update. Please download manually from GitHub."
+                    ))
+                    self.root.after(0, progress_window.destroy)
+            else:
+                self.root.after(0, lambda: messagebox.showerror(
+                    "Download Failed",
+                    "Could not download update. Please try again later."
+                ))
+                self.root.after(0, progress_window.destroy)
+        
+        # Start download in background
+        thread = threading.Thread(target=do_download)
+        thread.daemon = True
+        thread.start()
 
 def main():
     root = tk.Tk()

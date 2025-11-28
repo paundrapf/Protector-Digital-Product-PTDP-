@@ -23,6 +23,7 @@ except ImportError:
 from core.reader import PTDPReader
 from core.license import LicenseValidator
 from core.hwid import HardwareID
+from core.updater import AutoUpdater, CURRENT_VERSION
 import config
 
 # Set theme
@@ -35,7 +36,7 @@ class ModernPTDPViewer(ctk.CTk):
         super().__init__()
         
         # Window setup
-        self.title("PTDP Viewer - Protected PDF Reader")
+        self.title(f"PTDP Viewer v{CURRENT_VERSION} - Protected PDF Reader")
         self.geometry("1000x700")
         
         # Color scheme (matching website)
@@ -47,9 +48,13 @@ class ModernPTDPViewer(ctk.CTk):
         # State
         self.current_file = None
         self.reader = None
+        self.updater = AutoUpdater("Viewer", CURRENT_VERSION)
         
         # Build UI
         self.setup_ui()
+        
+        # Check for updates in background
+        self.after(2000, self.check_updates_background)
         
     def setup_ui(self):
         """Create the modern UI"""
@@ -495,6 +500,95 @@ class ModernPTDPViewer(ctk.CTk):
             text=message,
             text_color=colors.get(status_type, colors["info"])
         )
+    
+    def check_updates_background(self):
+        """Check for updates in background"""
+        self.updater.check_for_updates_async(self.on_update_check_complete)
+    
+    def on_update_check_complete(self, available, version, notes):
+        """Called when update check is complete"""
+        if available:
+            self.after(0, lambda: self.show_update_dialog(version, notes))
+    
+    def show_update_dialog(self, version, notes):
+        """Show update available dialog"""
+        result = messagebox.askyesno(
+            "Update Available",
+            f"A new version (v{version}) is available!\n\n"
+            f"Current: v{CURRENT_VERSION}\n"
+            f"New: v{version}\n\n"
+            f"Do you want to update now?"
+        )
+        
+        if result:
+            self.download_and_apply_update()
+    
+    def download_and_apply_update(self):
+        """Download and apply the update"""
+        # Show progress dialog
+        progress_window = ctk.CTkToplevel(self)
+        progress_window.title("Updating...")
+        progress_window.geometry("400x150")
+        progress_window.transient(self)
+        progress_window.grab_set()
+        
+        # Center window
+        progress_window.update_idletasks()
+        x = self.winfo_x() + (self.winfo_width() - 400) // 2
+        y = self.winfo_y() + (self.winfo_height() - 150) // 2
+        progress_window.geometry(f"+{x}+{y}")
+        
+        frame = ctk.CTkFrame(progress_window, fg_color=self.DARK_BG)
+        frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        label = ctk.CTkLabel(
+            frame,
+            text="Downloading update...",
+            font=ctk.CTkFont(size=16, weight="bold")
+        )
+        label.pack(pady=10)
+        
+        progress = ctk.CTkProgressBar(frame, width=300)
+        progress.pack(pady=10)
+        progress.set(0)
+        
+        status_label = ctk.CTkLabel(frame, text="0%")
+        status_label.pack()
+        
+        def update_progress(downloaded, total):
+            if total > 0:
+                percent = downloaded / total
+                self.after(0, lambda: progress.set(percent))
+                self.after(0, lambda: status_label.configure(
+                    text=f"{int(percent * 100)}% ({downloaded // 1024 // 1024}MB / {total // 1024 // 1024}MB)"
+                ))
+        
+        def do_download():
+            update_path = self.updater.download_update(update_progress)
+            if update_path:
+                self.after(0, lambda: label.configure(text="Installing update..."))
+                self.after(0, lambda: status_label.configure(text="Please wait..."))
+                
+                if self.updater.apply_update(update_path):
+                    self.after(500, self.destroy)  # Close app for update
+                else:
+                    self.after(0, lambda: messagebox.showerror(
+                        "Update Failed",
+                        "Could not apply update. Please download manually from GitHub."
+                    ))
+                    self.after(0, progress_window.destroy)
+            else:
+                self.after(0, lambda: messagebox.showerror(
+                    "Download Failed",
+                    "Could not download update. Please try again later."
+                ))
+                self.after(0, progress_window.destroy)
+        
+        # Start download in background
+        import threading
+        thread = threading.Thread(target=do_download)
+        thread.daemon = True
+        thread.start()
 
 
 def main():
