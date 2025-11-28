@@ -21,42 +21,61 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Install dependencies
+    - name: Install ALL dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install cryptography customtkinter pillow pyinstaller
+        pip install cryptography==41.0.7
+        pip install requests==2.31.0
+        pip install psutil==5.9.6
+        pip install customtkinter==5.2.0
+        pip install pillow==10.1.0
+        pip install pyinstaller==6.3.0
         
-    - name: Verify cryptography installation
+    - name: Verify ALL imports work
       run: |
-        python -c "from cryptography.fernet import Fernet; print('Fernet OK')"
-        python -c "from cryptography.hazmat.primitives import hashes; print('hashes OK')"
-        python -c "from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC; print('PBKDF2HMAC OK')"
+        python -c "from cryptography.fernet import Fernet; print('✓ cryptography.fernet')"
+        python -c "import requests; print('✓ requests')"
+        python -c "import psutil; print('✓ psutil')"
+        python -c "import customtkinter; print('✓ customtkinter')"
+        python -c "from PIL import Image; print('✓ PIL')"
+        python -c "import json, os, sys, hashlib, base64, uuid, platform, tempfile; print('✓ stdlib')"
     
     - name: Build Viewer
       run: |
         pyinstaller --onefile --noconsole --name=PTDP-Viewer-Windows `
+          --collect-all=cryptography `
+          --collect-all=requests `
+          --collect-all=urllib3 `
+          --collect-all=certifi `
+          --collect-all=charset_normalizer `
+          --collect-all=idna `
+          --collect-all=psutil `
+          --collect-all=customtkinter `
+          --collect-all=PIL `
           --hidden-import=cryptography `
           --hidden-import=cryptography.fernet `
-          --hidden-import=cryptography.hazmat `
           --hidden-import=cryptography.hazmat.primitives `
           --hidden-import=cryptography.hazmat.primitives.hashes `
-          --hidden-import=cryptography.hazmat.primitives.kdf `
           --hidden-import=cryptography.hazmat.primitives.kdf.pbkdf2 `
-          --hidden-import=cryptography.hazmat.primitives.ciphers `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.aead `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.algorithms `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.modes `
           --hidden-import=cryptography.hazmat.backends `
-          --hidden-import=cryptography.hazmat.backends.openssl `
-          --hidden-import=cryptography.hazmat.backends.openssl.backend `
-          --hidden-import=cryptography.hazmat.bindings `
-          --hidden-import=cryptography.hazmat.bindings.openssl `
-          --hidden-import=cryptography.hazmat.bindings._rust `
+          --hidden-import=requests `
+          --hidden-import=urllib3 `
+          --hidden-import=certifi `
+          --hidden-import=charset_normalizer `
+          --hidden-import=idna `
+          --hidden-import=psutil `
+          --hidden-import=psutil._pswindows `
           --hidden-import=customtkinter `
           --hidden-import=PIL `
           --hidden-import=PIL._tkinter_finder `
-          --collect-all=cryptography `
-          --collect-all=customtkinter `
+          --hidden-import=PIL.Image `
+          --hidden-import=json `
+          --hidden-import=hashlib `
+          --hidden-import=base64 `
+          --hidden-import=uuid `
+          --hidden-import=platform `
+          --hidden-import=tempfile `
+          --hidden-import=datetime `
           --add-data="gui;gui" `
           --add-data="core;core" `
           --add-data="config.py;." `
@@ -65,40 +84,49 @@ jobs:
     - name: Build Creator
       run: |
         pyinstaller --onefile --noconsole --name=PTDP-Creator-Windows `
+          --collect-all=cryptography `
+          --collect-all=requests `
+          --collect-all=urllib3 `
+          --collect-all=certifi `
+          --collect-all=charset_normalizer `
+          --collect-all=idna `
+          --collect-all=psutil `
+          --collect-all=customtkinter `
+          --collect-all=PIL `
           --hidden-import=cryptography `
           --hidden-import=cryptography.fernet `
-          --hidden-import=cryptography.hazmat `
           --hidden-import=cryptography.hazmat.primitives `
           --hidden-import=cryptography.hazmat.primitives.hashes `
-          --hidden-import=cryptography.hazmat.primitives.kdf `
           --hidden-import=cryptography.hazmat.primitives.kdf.pbkdf2 `
-          --hidden-import=cryptography.hazmat.primitives.ciphers `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.aead `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.algorithms `
-          --hidden-import=cryptography.hazmat.primitives.ciphers.modes `
           --hidden-import=cryptography.hazmat.backends `
-          --hidden-import=cryptography.hazmat.backends.openssl `
-          --hidden-import=cryptography.hazmat.backends.openssl.backend `
-          --hidden-import=cryptography.hazmat.bindings `
-          --hidden-import=cryptography.hazmat.bindings.openssl `
-          --hidden-import=cryptography.hazmat.bindings._rust `
+          --hidden-import=requests `
+          --hidden-import=urllib3 `
+          --hidden-import=certifi `
+          --hidden-import=charset_normalizer `
+          --hidden-import=idna `
+          --hidden-import=psutil `
+          --hidden-import=psutil._pswindows `
           --hidden-import=customtkinter `
           --hidden-import=PIL `
           --hidden-import=PIL._tkinter_finder `
-          --collect-all=cryptography `
-          --collect-all=customtkinter `
+          --hidden-import=PIL.Image `
+          --hidden-import=json `
+          --hidden-import=hashlib `
+          --hidden-import=base64 `
+          --hidden-import=uuid `
+          --hidden-import=platform `
+          --hidden-import=tempfile `
+          --hidden-import=datetime `
           --add-data="gui;gui" `
           --add-data="core;core" `
           --add-data="config.py;." `
           creator.py
     
-    - name: List output
+    - name: Verify builds exist
       run: |
         dir dist
-        echo "Viewer size:"
-        (Get-Item dist/PTDP-Viewer-Windows.exe).Length / 1MB
-        echo "Creator size:"
-        (Get-Item dist/PTDP-Creator-Windows.exe).Length / 1MB
+        if (Test-Path "dist/PTDP-Viewer-Windows.exe") { Write-Host "✓ Viewer built" } else { exit 1 }
+        if (Test-Path "dist/PTDP-Creator-Windows.exe") { Write-Host "✓ Creator built" } else { exit 1 }
     
     - name: Upload Viewer
       uses: actions/upload-artifact@v4
