@@ -1,0 +1,76 @@
+name: Build Windows Executables
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install cryptography customtkinter pillow pyinstaller
+    
+    - name: Build Viewer
+      run: |
+        pyinstaller --onefile --noconsole --name=PTDP-Viewer-Windows viewer.py
+    
+    - name: Build Creator
+      run: |
+        pyinstaller --onefile --noconsole --name=PTDP-Creator-Windows creator.py
+    
+    - name: List output
+      run: dir dist
+    
+    - name: Upload Viewer
+      uses: actions/upload-artifact@v4
+      with:
+        name: PTDP-Viewer-Windows
+        path: dist/PTDP-Viewer-Windows.exe
+    
+    - name: Upload Creator
+      uses: actions/upload-artifact@v4
+      with:
+        name: PTDP-Creator-Windows
+        path: dist/PTDP-Creator-Windows.exe
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: latest
+        name: Download PTDP Apps
+        body: |
+          ## Download & Use Immediately!
+          
+          **No installation needed!** Just download, double-click, and use.
+          
+          ### For End Users
+          Download **PTDP-Viewer-Windows.exe** to read protected PDFs
+          
+          ### For Sellers  
+          Download **PTDP-Creator-Windows.exe** to protect your PDFs
+          
+          ---
+          
+          **First time running?** Windows may show a warning. Click "More info" then "Run anyway".
+        files: |
+          dist/PTDP-Viewer-Windows.exe
+          dist/PTDP-Creator-Windows.exe
+        make_latest: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
