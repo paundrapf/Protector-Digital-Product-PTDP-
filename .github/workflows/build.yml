@@ -156,7 +156,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         tag_name: latest
-        name: PTDP v1.0.3 - Download Now!
+        name: PTDP v1.0.4 - Gen-Z Edition 🌊
         body: |
           ## 🚀 Download and Use Immediately!
           
@@ -170,10 +170,11 @@ jobs:
           
           ---
           
-          ### 🆕 What's New in v1.0.3
-          - 🎨 New app icons (shield design)
-          - 📄 Improved in-app PDF reading
-          - 🔧 Bug fixes and performance improvements
+          ### 🆕 What's New in v1.0.4
+          - 🌊 **Gen-Z Website Redesign** - Fluid shader background, glassmorphism UI
+          - 🎨 **New Minimalist Icons** - Shield design across all apps
+          - 📝 **Animated README** - Fresh documentation with modern badges
+          - 🔧 Performance improvements and bug fixes
           
           ---
           

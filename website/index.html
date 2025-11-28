@@ -3,290 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTDP - Protect Your Digital Products</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>PTDP - Secure Your Digital Assets</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect width="32" height="32" rx="8" fill="#FF4D6D"/>
-                    <path d="M16 8C13.2 8 11 10.2 11 13V15H10C9.4 15 9 15.4 9 16V23C9 23.6 9.4 24 10 24H22C22.6 24 23 23.6 23 23V16C23 15.4 22.6 15 22 15H21V13C21 10.2 18.8 8 16 8ZM16 10C17.7 10 19 11.3 19 13V15H13V13C13 11.3 14.3 10 16 10ZM16 18C16.8 18 17.5 18.7 17.5 19.5C17.5 20 17.3 20.4 17 20.7V22H15V20.7C14.7 20.4 14.5 20 14.5 19.5C14.5 18.7 15.2 18 16 18Z" fill="white"/>
-                </svg>
-                <span>PTDP</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#download">Download</a></li>
-            </ul>
-            <a href="#download" class="btn btn-primary btn-sm">Get Started</a>
-        </div>
-    </nav>
+    <!-- Fluid Background -->
+    <canvas id="fluid-canvas"></canvas>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="badge">
-                    <span class="badge-dot"></span>
-                    v1.0.3 - Now with In-App PDF Reading
-                </div>
-                <h1>Protect Your Digital Products with <span class="text-primary">Military-Grade</span> Encryption</h1>
-                <p class="hero-desc">
-                    Sell your PDFs, eBooks, and documents securely. 
-                    License-based protection with anti-screenshot and anti-copy features.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary btn-lg">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 14L5 9L6.41 7.59L9 10.17V2H11V10.17L13.59 7.59L15 9L10 14ZM2 16H18V18H2V16Z" fill="currentColor"/>
+    <!-- Marquee Banner -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>SECURE YOUR PDF</span>
+            <span class="separator">•</span>
+            <span>ANTI-PIRACY PROTECTION</span>
+            <span class="separator">•</span>
+            <span>AES-256 ENCRYPTION</span>
+            <span class="separator">•</span>
+            <span>HARDWARE LOCK</span>
+            <span class="separator">•</span>
+            <span>NO MORE LEAKS</span>
+            <span class="separator">•</span>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 2L4 7V15C4 22.5 9.1 29.5 16 31C22.9 29.5 28 22.5 28 15V7L16 2Z" fill="#FF4D6D"/>
+                            <path d="M20 14V12C20 9.8 18.2 8 16 8C13.8 8 12 9.8 12 12V14H11V22H21V14H20ZM14 12C14 10.9 14.9 10 16 10C17.1 10 18 10.9 18 12V14H14V12Z" fill="white"/>
                         </svg>
-                        Download Now
-                    </a>
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-" class="btn btn-outline btn-lg" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="app-preview">
-                    <div class="app-window">
-                        <div class="window-header">
-                            <div class="window-dots">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <span class="window-title">PTDP Viewer</span>
-                        </div>
-                        <div class="window-content">
-                            <div class="pdf-preview">
-                                <div class="pdf-icon">📄</div>
-                                <div class="lock-badge">🔒 Protected</div>
-                            </div>
-                        </div>
                     </div>
+                    PTDP
+                </a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it Works</a>
+                    <a href="#download" class="btn btn-primary btn-sm">Download Now</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose PTDP?</h2>
-                <p>Everything you need to protect and sell your digital products</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>AES-256 Encryption</h3>
-                    <p>Military-grade encryption that's virtually impossible to crack. Your content stays secure.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Anti-Screenshot</h3>
-                    <p>Windows-level protection prevents screen capture of your protected documents.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚫</div>
-                    <h3>No Copy-Paste</h3>
-                    <p>Text selection and clipboard operations are completely disabled.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎫</div>
-                    <h3>License System</h3>
-                    <p>Generate unique license keys for each customer with expiry and device lock options.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💻</div>
-                    <h3>HWID Lock</h3>
-                    <p>Lock licenses to specific devices to prevent unauthorized sharing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3>In-App Reading</h3>
-                    <p>Built-in PDF viewer with navigation, zoom, and smooth scrolling.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p>Simple 3-step process for sellers and buyers</p>
-            </div>
-            
-            <div class="workflow">
-                <div class="workflow-section">
-                    <h3 class="workflow-title">👨‍💼 For Sellers</h3>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Protect Your PDF</h4>
-                                <p>Use PTDP Creator to encrypt your PDF with a unique product ID</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Generate License</h4>
-                                <p>Create license keys for your customers (lifetime or expiring)</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Deliver</h4>
-                                <p>Send the .ptdp file and license key to your customer</p>
-                            </div>
-                        </div>
+        <header class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <span class="dot"></span> v1.0.4 Available Now
+                    </div>
+                    <h1>Protect Your<br><span class="highlight">Digital Assets</span><br>Like a Pro.</h1>
+                    <p class="hero-desc">Stop piracy dead in its tracks. The ultimate protection system for your eBooks, courses, and premium content.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn btn-primary btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            Get Started
+                        </a>
+                        <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-" class="btn btn-glass btn-lg">
+                            View on GitHub
+                        </a>
                     </div>
                 </div>
                 
-                <div class="workflow-divider">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <circle cx="20" cy="20" r="20" fill="#FF4D6D"/>
-                        <path d="M15 20H25M25 20L21 16M25 20L21 24" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+                <div class="hero-visual">
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="traffic-lights">
+                                <span class="light red"></span>
+                                <span class="light yellow"></span>
+                                <span class="light green"></span>
+                            </div>
+                            <div class="address-bar">secure-viewer.exe</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="lock-animation">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#FF4D6D" stroke-width="1.5">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <h3>Access Granted</h3>
+                            <p>License Verified Successfully</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose PTDP?</h2>
+                    <p>Enterprise-grade security, simplified for everyone.</p>
                 </div>
                 
-                <div class="workflow-section">
-                    <h3 class="workflow-title">👤 For Buyers</h3>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Download Viewer</h4>
-                                <p>Get the free PTDP Viewer app</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Open .ptdp File</h4>
-                                <p>Open the protected file you received</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Enter License</h4>
-                                <p>Unlock and read your content securely</p>
-                            </div>
-                        </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon-box">🔐</div>
+                        <h3>AES-256 Encryption</h3>
+                        <p>Military-grade encryption ensures your content stays yours. Unbreakable security standard.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-box">💻</div>
+                        <h3>Hardware Lock</h3>
+                        <p>Bind licenses to specific devices. Prevent unauthorized sharing and distribution.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-box">👁️</div>
+                        <h3>Anti-Screenshot</h3>
+                        <p>Advanced protection against screen capture tools and recording software.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Download Section -->
-    <section id="download" class="download">
-        <div class="container">
-            <div class="section-header">
-                <h2>Download PTDP</h2>
-                <p>Free, portable, no installation required</p>
-            </div>
-            
-            <div class="download-cards">
-                <div class="download-card">
-                    <div class="card-icon viewer-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="#3B82F6"/>
-                            <path d="M24 14C18.48 14 14 18.48 14 24C14 29.52 18.48 34 24 34C29.52 34 34 29.52 34 24C34 18.48 29.52 14 24 14ZM24 31C20.14 31 17 27.86 17 24C17 20.14 20.14 17 24 17C27.86 17 31 20.14 31 24C31 27.86 27.86 31 24 31ZM24 19C21.24 19 19 21.24 19 24C19 26.76 21.24 29 24 29C26.76 29 29 26.76 29 24C29 21.24 26.76 19 24 19Z" fill="white"/>
-                        </svg>
+        <section id="download" class="download-section">
+            <div class="container">
+                <div class="download-box">
+                    <div class="download-header">
+                        <h2>Ready to Secure Your Content?</h2>
+                        <p>Choose your tool. No installation required.</p>
                     </div>
-                    <h3>PTDP Viewer</h3>
-                    <p>For reading protected PDFs. Free for everyone.</p>
-                    <ul class="card-features">
-                        <li>✓ Open .ptdp files</li>
-                        <li>✓ License validation</li>
-                        <li>✓ Secure in-app reading</li>
-                        <li>✓ Auto-update</li>
-                    </ul>
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/releases/latest/download/PTDP-Viewer-Windows.exe" class="btn btn-primary btn-block">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 12L3 7L4.41 5.59L7 8.17V0H9V8.17L11.59 5.59L13 7L8 12ZM0 14H16V16H0V14Z"/>
-                        </svg>
-                        Download Viewer
-                    </a>
-                    <span class="file-size">~35 MB • Windows 10/11</span>
-                </div>
-                
-                <div class="download-card featured">
-                    <div class="featured-badge">For Sellers</div>
-                    <div class="card-icon creator-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="#FF4D6D"/>
-                            <path d="M24 14C19.58 14 16 17.58 16 22V26H14C13.45 26 13 26.45 13 27V35C13 35.55 13.45 36 14 36H34C34.55 36 35 35.55 35 35V27C35 26.45 34.55 26 34 26H32V22C32 17.58 28.42 14 24 14ZM24 17C26.76 17 29 19.24 29 22V26H19V22C19 19.24 21.24 17 24 17ZM24 29C25.1 29 26 29.9 26 31C26 31.74 25.6 32.38 25 32.73V34H23V32.73C22.4 32.38 22 31.74 22 31C22 29.9 22.9 29 24 29Z" fill="white"/>
-                        </svg>
+                    
+                    <div class="download-grid">
+                        <div class="download-item">
+                            <div class="item-icon viewer-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                            <h3>PTDP Viewer</h3>
+                            <p>For your customers to read content</p>
+                            <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/releases/latest/download/PTDP-Viewer-Windows.exe" class="btn btn-primary btn-block">Download Viewer</a>
+                        </div>
+                        
+                        <div class="download-item">
+                            <div class="item-icon creator-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <path d="M12 8v8"/>
+                                    <path d="M8 12h8"/>
+                                </svg>
+                            </div>
+                            <h3>PTDP Creator</h3>
+                            <p>For you to protect content</p>
+                            <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/releases/latest/download/PTDP-Creator-Windows.exe" class="btn btn-glass btn-block">Download Creator</a>
+                        </div>
                     </div>
-                    <h3>PTDP Creator</h3>
-                    <p>For protecting and selling your PDFs.</p>
-                    <ul class="card-features">
-                        <li>✓ Protect PDF files</li>
-                        <li>✓ Generate licenses</li>
-                        <li>✓ Set expiry dates</li>
-                        <li>✓ Device lock options</li>
-                    </ul>
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/releases/latest/download/PTDP-Creator-Windows.exe" class="btn btn-primary btn-block">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 12L3 7L4.41 5.59L7 8.17V0H9V8.17L11.59 5.59L13 7L8 12ZM0 14H16V16H0V14Z"/>
+                    
+                    <div class="security-notice">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
                         </svg>
-                        Download Creator
-                    </a>
-                    <span class="file-size">~35 MB • Windows 10/11</span>
+                        <p>Windows SmartScreen may appear on first run. Click <strong>More info</strong> → <strong>Run anyway</strong>.</p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="security-note">
-                <div class="note-icon">ℹ️</div>
-                <div class="note-content">
-                    <strong>First Run Notice:</strong> Windows may show a SmartScreen warning because the app isn't code-signed yet. 
-                    Click "More info" → "Run anyway" to proceed. The app is open-source and safe.
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect width="32" height="32" rx="8" fill="#FF4D6D"/>
-                            <path d="M16 8C13.2 8 11 10.2 11 13V15H10C9.4 15 9 15.4 9 16V23C9 23.6 9.4 24 10 24H22C22.6 24 23 23.6 23 23V16C23 15.4 22.6 15 22 15H21V13C21 10.2 18.8 8 16 8ZM16 10C17.7 10 19 11.3 19 13V15H13V13C13 11.3 14.3 10 16 10ZM16 18C16.8 18 17.5 18.7 17.5 19.5C17.5 20 17.3 20.4 17 20.7V22H15V20.7C14.7 20.4 14.5 20 14.5 19.5C14.5 18.7 15.2 18 16 18Z" fill="white"/>
-                        </svg>
-                        <span>PTDP</span>
-                    </div>
-                    <p>Protect Your Digital Products</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-" target="_blank">GitHub</a>
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/issues" target="_blank">Report Issue</a>
-                    <a href="https://github.com/paundrapf/Protector-Digital-Product-PTDP-/releases" target="_blank">Releases</a>
-                </div>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 PTDP Protection System. Open Source Project.</p>
             </div>
-            <div class="footer-bottom">
-                <p>© 2025 PTDP. Open Source under MIT License.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
