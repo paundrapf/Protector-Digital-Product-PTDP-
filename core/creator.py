@@ -94,6 +94,10 @@ class PTDPCreator:
                     'error': 'Master password required in config'
                 }
             
+            # Use product_id + secret_key for consistent encryption
+            # This ensures the same key is used for encryption and decryption
+            encryption_password = f"{protection_config['product_id']}:{config.SECRET_KEY}"
+            
             kdf = PBKDF2HMAC(
                 algorithm=hashes.SHA256(),
                 length=32,
@@ -101,7 +105,7 @@ class PTDPCreator:
                 iterations=config.KDF_ITERATIONS,
             )
             key = base64.urlsafe_b64encode(
-                kdf.derive(master_password.encode())
+                kdf.derive(encryption_password.encode())
             )
             
             # 3. Encrypt content

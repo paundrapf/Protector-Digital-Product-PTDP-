@@ -169,9 +169,10 @@ class PTDPReader:
             print("🔓 Decrypting content...")
             
             try:
-                # Use master password or derive from license
-                if master_password is None:
-                    master_password = license_key
+                # Use product_id + secret_key for consistent decryption
+                # This matches the encryption in creator.py
+                product_id = metadata['product_id']
+                encryption_password = f"{product_id}:{config.SECRET_KEY}"
                 
                 # Get salt from metadata
                 salt = base64.b64decode(metadata['salt'])
@@ -183,7 +184,7 @@ class PTDPReader:
                     salt=salt,
                     iterations=config.KDF_ITERATIONS,
                 )
-                key = base64.urlsafe_b64encode(kdf.derive(master_password.encode()))
+                key = base64.urlsafe_b64encode(kdf.derive(encryption_password.encode()))
                 
                 # Decrypt
                 fernet = Fernet(key)
