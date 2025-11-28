@@ -1,0 +1,120 @@
+name: Build Multi-Platform Executables
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: Windows
+            ext: .exe
+          - os: ubuntu-latest
+            platform: Linux
+            ext: ''
+          - os: macos-latest
+            platform: macOS
+            ext: ''
+    
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+    
+    - name: Build PTDP Viewer
+      run: |
+        pyinstaller --clean build_viewer_modern.spec
+    
+    - name: Build PTDP Creator
+      run: |
+        pyinstaller --clean build_creator.spec
+    
+    - name: Rename executables (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        Move-Item dist/PTDP-Viewer.exe dist/PTDP-Viewer-Windows.exe
+        Move-Item dist/PTDP-Creator.exe dist/PTDP-Creator-Windows.exe
+      shell: pwsh
+    
+    - name: Rename executables (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        mv dist/PTDP-Viewer dist/PTDP-Viewer-${{ matrix.platform }}
+        mv dist/PTDP-Creator dist/PTDP-Creator-${{ matrix.platform }}
+    
+    - name: Display build info
+      run: |
+        ls -lh dist/
+      shell: bash
+    
+    - name: Upload Viewer artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PTDP-Viewer-${{ matrix.platform }}
+        path: dist/PTDP-Viewer-${{ matrix.platform }}${{ matrix.ext }}
+        retention-days: 30
+    
+    - name: Upload Creator artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PTDP-Creator-${{ matrix.platform }}
+        path: dist/PTDP-Creator-${{ matrix.platform }}${{ matrix.ext }}
+        retention-days: 30
+    
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/PTDP-Viewer-${{ matrix.platform }}${{ matrix.ext }}
+          dist/PTDP-Creator-${{ matrix.platform }}${{ matrix.ext }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  package:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: dist/
+    
+    - name: Create distribution package
+      run: |
+        mkdir -p ptdp_distribution/{for_sellers,for_users,samples}
+        
+        # Copy executables
+        find dist/ -name "PTDP-Viewer-*" -exec cp {} ptdp_distribution/for_users/ \;
+        find dist/ -name "PTDP-Creator-*" -exec cp {} ptdp_distribution/for_sellers/ \;
+        
+        # Create archive
+        tar -czf ptdp_all_platforms.tar.gz ptdp_distribution/
+        
+    - name: Upload distribution package
+      uses: actions/upload-artifact@v3
+      with:
+        name: ptdp-all-platforms
+        path: ptdp_all_platforms.tar.gz
+        retention-days: 90

@@ -1,0 +1,11 @@
+PTDP License Agreement
+======================
+
+Copyright (c) 2025 PTDP Project
+
+Permission is hereby granted to use this software for commercial 
+and personal purposes.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+For full license details, see the LICENSE file in the source repository.

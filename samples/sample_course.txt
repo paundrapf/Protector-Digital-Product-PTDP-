@@ -1,0 +1,22 @@
+
+    ╔══════════════════════════════════════════════════════════╗
+    ║          PYTHON MASTERY COURSE - LESSON 1               ║
+    ╚══════════════════════════════════════════════════════════╝
+    
+    Welcome to Python Mastery Course!
+    
+    This protected course includes:
+    - 50+ Video lessons
+    - Hands-on projects
+    - Code examples
+    - Lifetime support
+    
+    LESSON 1: Python Basics
+    - Variables and data types
+    - Control structures
+    - Functions and modules
+    
+    [Course content would be here...]
+    
+    © 2024 Protected with PTDP System
+    
