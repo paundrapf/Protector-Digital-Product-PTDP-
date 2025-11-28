@@ -31,14 +31,13 @@ jobs:
         pip install pillow==10.1.0
         pip install pyinstaller==6.3.0
         
-    - name: Verify ALL imports work
+    - name: Verify imports
       run: |
-        python -c "from cryptography.fernet import Fernet; print('✓ cryptography.fernet')"
-        python -c "import requests; print('✓ requests')"
-        python -c "import psutil; print('✓ psutil')"
-        python -c "import customtkinter; print('✓ customtkinter')"
-        python -c "from PIL import Image; print('✓ PIL')"
-        python -c "import json, os, sys, hashlib, base64, uuid, platform, tempfile; print('✓ stdlib')"
+        python -c "from cryptography.fernet import Fernet; print('cryptography OK')"
+        python -c "import requests; print('requests OK')"
+        python -c "import psutil; print('psutil OK')"
+        python -c "import customtkinter; print('customtkinter OK')"
+        python -c "from PIL import Image; print('PIL OK')"
     
     - name: Build Viewer
       run: |
@@ -122,11 +121,11 @@ jobs:
           --add-data="config.py;." `
           creator.py
     
-    - name: Verify builds exist
+    - name: Verify builds
       run: |
         dir dist
-        if (Test-Path "dist/PTDP-Viewer-Windows.exe") { Write-Host "✓ Viewer built" } else { exit 1 }
-        if (Test-Path "dist/PTDP-Creator-Windows.exe") { Write-Host "✓ Creator built" } else { exit 1 }
+        if (Test-Path "dist/PTDP-Viewer-Windows.exe") { Write-Host "Viewer OK" } else { exit 1 }
+        if (Test-Path "dist/PTDP-Creator-Windows.exe") { Write-Host "Creator OK" } else { exit 1 }
     
     - name: Upload Viewer
       uses: actions/upload-artifact@v4
@@ -152,21 +151,21 @@ jobs:
         tag_name: latest
         name: Download PTDP Apps
         body: |
-          ## Download & Use Immediately! 🚀
+          ## Download and Use Immediately!
           
-          **No installation needed!** Just download, double-click, and use.
+          No installation needed! Just download, double-click, and use.
           
-          ### 👤 For End Users (Read PDFs)
-          Download **PTDP-Viewer-Windows.exe** to read protected PDFs
+          ### For End Users (Read PDFs)
+          Download PTDP-Viewer-Windows.exe to read protected PDFs
           
-          ### 👨‍💼 For Sellers (Protect PDFs)
-          Download **PTDP-Creator-Windows.exe** to protect your PDFs
+          ### For Sellers (Protect PDFs)
+          Download PTDP-Creator-Windows.exe to protect your PDFs
           
           ---
           
-          **First time running?** Windows may show a warning. Click "More info" → "Run anyway".
+          First time running? Windows may show a warning. Click More info then Run anyway.
           
-          **System Requirements:** Windows 10/11 (64-bit)
+          System Requirements: Windows 10/11 (64-bit)
         files: |
           dist/PTDP-Viewer-Windows.exe
           dist/PTDP-Creator-Windows.exe
