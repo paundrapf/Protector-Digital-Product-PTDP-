@@ -339,7 +339,7 @@ class ModernPTDPViewer(ctk.CTk):
         self.status_label.pack(side="left", padx=20)
         
         # HWID display
-        hwid = HardwareID.get()
+        hwid = HardwareID.get_simple_hwid()
         hwid_label = ctk.CTkLabel(
             status_bar,
             text=f"💻 Device: {hwid[:16]}...",
